@@ -1,0 +1,4 @@
+applicant:
+    application_information: "<JOB_DESCRIPTION>"
+    applicant_bio: "<BIO>"
+    cv_content: "<CV>"
