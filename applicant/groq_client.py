@@ -9,8 +9,14 @@ LLAMA3_70B_INSTRUCT = "llama3-70b-8192"
 LLAMA3_8B_INSTRUCT = "llama3-8b-8192"
 
 DEFAULT_MODEL = LLAMA3_70B_INSTRUCT
+DEFAULT_OUTPUT = "output.txt"
 
 client = Groq()
+
+def write_output(response: str, output_file: str = DEFAULT_OUTPUT):
+    with open(output_file, "w") as file:
+            print(f"---\nSaving output to {output_file}")
+            file.write(response)
 
 def assistant(content: str):
     return { "role": "assistant", "content": content }
@@ -46,7 +52,9 @@ def completion(
         top_p=top_p,
     )
 
-def complete_and_print(prompt: str, model: str = DEFAULT_MODEL):
-    print(f'==============\n{prompt}\n==============')
+def complete_and_print(prompt: str, model: str = DEFAULT_MODEL, output_file: str = DEFAULT_OUTPUT):
+    # print(f'==============\n{prompt}\n==============')
     response = completion(prompt, model)
     print(response, end='\n\n')
+    write_output(response=response, output_file=output_file)
+

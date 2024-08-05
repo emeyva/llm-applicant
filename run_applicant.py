@@ -1,23 +1,13 @@
-from applicant.groq_client import chat_completion, user, assistant, complete_and_print, completion
-from yaml import safe_load
+from applicant.groq_client import complete_and_print
+from applicant.create_prompt import create_prompt
 
-CONFIG_FILE = "applicant/config.yaml"
+CONFIG_FILE = "config.yaml"
+OUTPUT_FILE = "output.txt"
+
+def run_applicant():
+    prompt = create_prompt(CONFIG_FILE)
+    complete_and_print(prompt)
 
 if __name__ == '__main__':
-    application_form = ""
-    with open(CONFIG_FILE, 'r') as file:
-        application_form = safe_load(file)
-
-    prompt = f"Here is a small bio of myself: {application_form['applicant']['application_information']}\n"
-
-    prompt += f"Here is some relvant information present on my CV: {application_form['applicant']['applicant_bio']}\n"
-
-    prompt += f"I need you to write a Cover Letter for the following job position: {application_form['applicant']['application_information']}\n"
-
-    prompt += f"Make it formal, short and not too boring"
-
-    response = completion(prompt)
-
-    print(f"--- Your Cover Letter ---\n\n{response}")
-
-
+    run_applicant()
+    

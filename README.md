@@ -1,21 +1,25 @@
-# llm-applicant
-a python cli that leverages llms capabilities to create specific cover letters
+# LLM-Applicant
+A Python CLI that leverages llms capabilities to create specific cover letters
 
-## plan
+## Plan
+Started as a playgroung project to learn more about promp-engineering.
 
-So a job application evolves usually writing a cover letter.
-This usually is motivation letter that infuses some of your skills, some are present on your CV, some are not.
+A job application usually requests a cover letter.
+This usually is a type of motivation letter that shows how your skills overlap with the ones from the job requisites.
+Some of these skills are present on CVs, our bios, or other forms.
 
-Can we use a Large Language Model to help us write this Cover Letter with our info in context?
+Can we use a Large Language Model to help us write a draft Cover Letter?
 
+Let's prompt engineer Llama3 model to output a tailored Cover Letter!
 
-## configuration
-Set applicant/config.yaml with your own data
+## Run it!
+Set config.yaml with your own data
 | Values |
 | ------ |
 | application_information   |
 | applicant_bio | 
 | cv_content    |
+| complete_name    |
 
 Set your GROQ_API_KEY
 ```console
@@ -27,10 +31,20 @@ Just run run_applicant.py
 
 ```console
 foo@bar:~$ python3 run_applicant.py
---- Your Cover Letter ---
-Here is a cover letter tailored to the ...
+**Job Opportunity Summary:**
+...
+**Your Curriculum Summary:**
+...
+Now, I'll write a Cover Letter tailored to the job opportunity:
+...
 ```
 
-## model
+## Models
 
-Using llama3-70b-8192 through groq client
+Using groq client
+- llama3-70b-8192 (default)
+- llama3-8b-8192
+
+## References
+
+Prompt Engineering with Llama 3 - [llama-recipes](https://github.com/meta-llama/llama-recipes/blob/main/recipes/quickstart/Prompt_Engineering_with_Llama_3.ipynb)
